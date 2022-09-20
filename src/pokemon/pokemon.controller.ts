@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { PokemonService } from './pokemon.service';
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
@@ -22,7 +23,8 @@ export class PokemonController {
   }
 
   @Get()
-  findAll() {
+  findAll(@Query() queryParameters) {
+    console.log(queryParameters);
     return this.pokemonService.findAll();
   }
 

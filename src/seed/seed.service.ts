@@ -16,15 +16,19 @@ export class SeedService {
   ) {}
 
   async executeSeed() {
+    // Borro todos los documentos de la coleccion de pokemons
+    await this.pokemonModel.deleteMany({});
     const { data } = await this.axios.get<PokeResponse>(
-      'https://pokeapi.co/api/v2/pokemon?limit=10',
+      'https://pokeapi.co/api/v2/pokemon?limit=100',
     );
-    data.results.forEach(async ({ name, url }) => {
+    const insertPromiseArray = [];
+    data.results.forEach(({ name, url }) => {
       const segments = url.split('/');
       const no = +segments[segments.length - 2];
-      await this.pokemonModel.create({ name, no });
-      console.log({ name, no });
+      insertPromiseArray.push(this.pokemonModel.create({ name, no }));
     });
+    // Ejecuto todas las promesas
+    await Promise.all(insertPromiseArray);
     return 'Seed ejecutado';
   }
 }

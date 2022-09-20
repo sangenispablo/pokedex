@@ -19,16 +19,16 @@ export class SeedService {
     // Borro todos los documentos de la coleccion de pokemons
     await this.pokemonModel.deleteMany({});
     const { data } = await this.axios.get<PokeResponse>(
-      'https://pokeapi.co/api/v2/pokemon?limit=100',
+      'https://pokeapi.co/api/v2/pokemon?limit=1000',
     );
-    const insertPromiseArray = [];
+    const pokemonToInsert: { no: number; name: string }[] = [];
     data.results.forEach(({ name, url }) => {
       const segments = url.split('/');
       const no = +segments[segments.length - 2];
-      insertPromiseArray.push(this.pokemonModel.create({ name, no }));
+      pokemonToInsert.push({ name, no });
     });
     // Ejecuto todas las promesas
-    await Promise.all(insertPromiseArray);
+    await this.pokemonModel.insertMany(pokemonToInsert);
     return 'Seed ejecutado';
   }
 }

@@ -20,6 +20,10 @@ docker-compose up -d
 ```
 yarn start:dev
 ```
+6. Para cargar la BD de Pokemon (1000) usar
+```
+localhost:3000/api/v2/seed
+```
 
 ## Stack usado
 * MongoDB

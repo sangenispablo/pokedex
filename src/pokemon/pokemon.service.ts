@@ -30,7 +30,7 @@ export class PokemonService {
   }
 
   findAll() {
-    return `This action returns all pokemon`;
+    return `Devolviendo todos los pokemons`;
   }
 
   async findOne(term: string) {

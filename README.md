@@ -16,11 +16,13 @@ npm i -g @nestjs/cli
 ```
 docker-compose up -d
 ```
-5. Arrancar el proyecto en dev
+5. Renombrar el __.env.template__ por __.env__ y llenar las variables dentro
+
+6. Arrancar el proyecto en dev
 ```
 yarn start:dev
 ```
-6. Para cargar la BD de Pokemon (1000) usar
+7. Para cargar la BD de Pokemon (1000) usar
 ```
 localhost:3000/api/v2/seed
 ```

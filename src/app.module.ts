@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
 import { PokemonModule } from './pokemon/pokemon.module';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -9,6 +10,7 @@ import { PokemonModule } from './pokemon/pokemon.module';
     MongooseModule.forRoot(
       'mongodb://root:example@localhost:27017/pokedex?authSource=admin',
     ),
+    SeedModule,
   ],
   controllers: [],
   providers: [],
